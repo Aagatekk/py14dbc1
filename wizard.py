@@ -3,7 +3,7 @@ class Wizard:
 
     def __init__(self, name, age,
                  school, is_a_good_student, fought_lord_voldemort,
-                 friends, eye_colour, position_in_quiddich, superpowers):
+                 friends, eye_colour, position_in_quiddich, superpowers, wallet):
         self.name = name
         self.age = age
         self.school = school
@@ -12,46 +12,53 @@ class Wizard:
         self.friends = friends
         self.eye_colour = eye_colour
         self.position_in_quiddich = position_in_quiddich
-        self.superpowers = superpowers
+        self.superpowers = superpowers.copy()
+        self.waller = wallet
 
     def display_basics(self):
         return '{} {} {}'.format(self.name, self.age, self.is_a_good_student)
 
 
-superpowers = list(('flying', 'casting spells', 'talking to snakes', 'surviving lord voldermort\'s attacks'))
+superpowers = {'flying': 51, 'casting spells': 100, 'talking to snakes': 10,
+               'surviving lord voldermort\'s attacks': 10000}
+wallet = {'USD': 170, 'GBP': 100, 'EUR': 200}
+harry = Wizard('Harry', 13, 'Hogwarts', None, True, ['Ron', 'Hermione'], 'green', 'seeker', superpowers, wallet)
+hermione = Wizard('Hermione', 13.5, 'Hogwarts', True, False, ['Harry', 'Ron'], 'brown', None, superpowers, wallet)
+ron = Wizard('Ron', 13, 'Hogwarts', False, False, ['Harry', 'Hermione'], 'brown', 'keeper', superpowers, wallet)
+victor = Wizard('Victor', 16, 'Durmstrang', None, False, [None], 'brown', 'seeker', superpowers, wallet)
 
-harry = Wizard('Harry', 13, 'Hogwarts', None, True, ['Ron', 'Hermione'], 'green', 'seeker', superpowers)
-hermione = Wizard('Hermione', 13.5, 'Hogwarts', True, False, ['Harry', 'Ron'], 'brown', None, superpowers)
-ron = Wizard('Ron', 13, 'Hogwarts', False, False, ['Harry', 'Hermione'], 'brown', 'keeper', superpowers)
-victor = Wizard('Victor', 16, 'Durmstrang', None, False, [None], 'brown', 'seeker', superpowers)
-
-# print(type(harry))
-# print(harry.name, harry.friends, harry.is_a_good_student)
-# print(hermione.display_basics())
-# print(harry.__dict__)
-# print(victor.display_basics())
-
-# print(str(hermione.name[7:8]) + str(hermione.name[6:7]) + str(hermione.name[5:6]) + str(hermione.name[4:5]) + str(
-#    hermione.name[3:4]) + str(hermione.name[2:3]) + str(hermione.name[1:2]) + str(hermione.name[0:1]))
-
-# for letter in hermione.name[::-1]:
-#    print(letter, end='')
-
-# hn = list(hermione.name)
-# hn.reverse()
-# print('\n', hn)
-
-print(superpowers)
+print(superpowers.keys())
+print(wallet)
 
 while True:
-    user_added_superpower = input("\nEnter superpower:\n")
-
-    if user_added_superpower in superpowers:
-        print(user_added_superpower + ' already on the list ')
-        print(superpowers)
-        print(' See?. Please add a different superpower')
-    else:
-        superpowers.append(user_added_superpower)
-        print('superpower added ')
-        print(superpowers)
+    chosen_superpower = input('\nPlease type a superpower from the list to see how useful it is\n')
+    if chosen_superpower in superpowers:
+        if 50 < superpowers.get(chosen_superpower) < 60:
+            print('Cool')
+        elif superpowers.get(chosen_superpower)>60:
+            print('Supercool')
+        else:
+            print('Still a superpower')
         break
+    else:
+        print('Please choose an existing superpower')
+
+
+
+
+#while True:
+#    user_added_superpower = input("\nEnter superpower:\n")
+#    superpower_power = input('enter the power of the superpower between 1 and a 100')
+
+#    if user_added_superpower in superpowers:
+#        print(user_added_superpower + ' already on the list ')
+#        print(superpowers)
+#        print(' See?. Please add a different superpower')
+#        if superpower_power > 100 or superpower_power < 1:
+#            print('Please provide a number between 1 and a 100')
+#    else:
+#        superpowers.update({user_added_superpower: superpower_power})
+#        print('superpower added ')
+#        print(superpowers)
+#        break
+
