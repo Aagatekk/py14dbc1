@@ -43,14 +43,13 @@ victor = Wizard('Victor', 16, 'Durmstrang', None, False, [None], 'brown', 'seeke
 
 print(superpowers)
 
-while 1 == 1:
+while True:
     user_added_superpower = input("\nEnter superpower:\n")
 
     if user_added_superpower in superpowers:
         print(user_added_superpower + ' already on the list ')
         print(superpowers)
         print(' See?. Please add a different superpower')
-        continue
     else:
         superpowers.append(user_added_superpower)
         print('superpower added ')
