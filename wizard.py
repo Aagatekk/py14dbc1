@@ -19,46 +19,40 @@ class Wizard:
         return '{} {} {}'.format(self.name, self.age, self.is_a_good_student)
 
 
-superpowers = {'flying': 51, 'casting spells': 100, 'talking to snakes': 10,
-               'surviving lord voldermort\'s attacks': 10000}
+superpowers = {'flying': 60, 'casting spells': 80, 'talking to snakes': 10,
+               "surviving lord voldermort\'s attacks": 100}  # using double quotes doesn't require using escape characters
 wallet = {'USD': 170, 'GBP': 100, 'EUR': 200}
 harry = Wizard('Harry', 13, 'Hogwarts', None, True, ['Ron', 'Hermione'], 'green', 'seeker', superpowers, wallet)
 hermione = Wizard('Hermione', 13.5, 'Hogwarts', True, False, ['Harry', 'Ron'], 'brown', None, superpowers, wallet)
 ron = Wizard('Ron', 13, 'Hogwarts', False, False, ['Harry', 'Hermione'], 'brown', 'keeper', superpowers, wallet)
 victor = Wizard('Victor', 16, 'Durmstrang', None, False, [None], 'brown', 'seeker', superpowers, wallet)
 
-print(superpowers.keys())
-print(wallet)
 
-while True:
-    chosen_superpower = input('\nPlease type a superpower from the list to see how useful it is\n')
-    if chosen_superpower in superpowers:
-        if 50 < superpowers.get(chosen_superpower) < 60:
-            print('Cool')
-        elif superpowers.get(chosen_superpower)>60:
-            print('Supercool')
+def find_cool_superpowers(superpowers, coolness_value):
+    cool_superpowers = []
+
+    for key, value in superpowers.items():
+        if int(superpowers[key]) > coolness_value:
+            cool_superpowers.append(key)
+    print(cool_superpowers)
+
+
+coolness_value = int(input('please provide superpower coolness value\n'))
+find_cool_superpowers(superpowers, coolness_value)
+
+
+def shopping(wallet, currency, cost):
+    # pull currency amount from the wallet
+    if currency in wallet.keys():
+        if (wallet[currency] - cost) >= 0:
+            wallet[currency] = wallet[currency] - cost
+            print('You spent ' + str(cost))
         else:
-            print('Still a superpower')
-        break
+            print("Sorry, you're broke")
     else:
-        print('Please choose an existing superpower')
+        print("You don't have this currency")
 
 
-
-
-#while True:
-#    user_added_superpower = input("\nEnter superpower:\n")
-#    superpower_power = input('enter the power of the superpower between 1 and a 100')
-
-#    if user_added_superpower in superpowers:
-#        print(user_added_superpower + ' already on the list ')
-#        print(superpowers)
-#        print(' See?. Please add a different superpower')
-#        if superpower_power > 100 or superpower_power < 1:
-#            print('Please provide a number between 1 and a 100')
-#    else:
-#        superpowers.update({user_added_superpower: superpower_power})
-#        print('superpower added ')
-#        print(superpowers)
-#        break
-
+currency = input("Please provide currency abbreviation\n").upper()
+cost = int(input("Please provide the cost of the item you ant to buy\n"))
+shopping(wallet, currency, cost)
