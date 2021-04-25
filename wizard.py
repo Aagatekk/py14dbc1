@@ -15,8 +15,9 @@ class Wizard:
         self.superpowers = superpowers.copy()
         self.waller = wallet
 
-    def display_basics(self):
-        return '{} {} {}'.format(self.name, self.age, self.is_a_good_student)
+
+def display_basics(self):
+    return '{} {} {}'.format(self.name, self.age, self.is_a_good_student)
 
 
 superpowers = {'flying': 60, 'casting spells': 80, 'talking to snakes': 10,
@@ -34,25 +35,69 @@ def find_cool_superpowers(superpowers, coolness_value):
     for key, value in superpowers.items():
         if int(superpowers[key]) > coolness_value:
             cool_superpowers.append(key)
-    print(cool_superpowers)
+    return cool_superpowers
 
 
-coolness_value = int(input('please provide superpower coolness value\n'))
-find_cool_superpowers(superpowers, coolness_value)
+# coolness_value = int(input('Please provide superpower coolness value\n'))
+# print(find_cool_superpowers(superpowers, coolness_value))
 
 
-def shopping(wallet, currency, cost):
-    # pull currency amount from the wallet
-    if currency in wallet.keys():
-        if (wallet[currency] - cost) >= 0:
-            wallet[currency] = wallet[currency] - cost
-            print('You spent ' + str(cost))
+def shopping(amount, cost):
+    new_amount = amount - cost
+    return new_amount
+
+
+# currency = input("Please provide currency abbreviation\n").upper()
+# cost = int(input("Please provide the cost of the item you ant to buy\n"))
+
+# if currency in wallet.keys():
+# if (wallet[currency] - cost) >= 0:
+# wallet[currency] = shopping(wallet[currency], cost)
+# print('You spent ' + str(cost) + ". and have left")
+# print(wallet.items())
+# else:
+# print("Sorry, you're broke")
+# else:
+# print("You don't have this currency")
+
+
+# def reverse(text):
+# return text[::-1]
+
+
+# for n in range(99, 0, -1):
+#   print(n, "bottles of rum on the wall")
+
+# squares = [x * x for x in range(1, 5001)] # list comprehension
+# print(squares)
+
+
+a_list = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+
+
+# iterate over the old list taking each element and squaring it create a new list from those squares, then sum() it
+def sum_of_squares_function(list):
+    sum_of_squares = sum([x * x for x in a_list])
+    return sum_of_squares
+
+
+# print(sum_of_squares_function(a_list)) #second argument even if not specified is always 0, so sum of None is 0.
+
+nums = [1, 7, 11, 8]
+target = 9
+
+
+def indices_of_a_given_sum(nums, target):
+    new_list = []
+    for i in range(len(nums)):
+        second_substrate = target - nums[i]
+        if second_substrate in nums:
+            new_list.append(nums.index(nums[i]))
+            new_list.append(nums.index(second_substrate))
+            break
         else:
-            print("Sorry, you're broke")
-    else:
-        print("You don't have this currency")
+            continue
+    return new_list
 
 
-currency = input("Please provide currency abbreviation\n").upper()
-cost = int(input("Please provide the cost of the item you ant to buy\n"))
-shopping(wallet, currency, cost)
+print(indices_of_a_given_sum(nums, target))
